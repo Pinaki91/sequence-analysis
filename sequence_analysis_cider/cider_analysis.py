@@ -5,7 +5,7 @@ from natsort import natsorted
 import matplotlib.pyplot as plt
 
 #Assigning path and fasta files to be analyzed
-path = "RNAP/"
+path = "ecoli/input/"
 filelist = os.listdir(path)
 #Sorting them in an order
 filelist=natsorted(filelist)
@@ -17,7 +17,7 @@ for file in filelist:
    file= path + file
    list_of_SeqObjs.append(SequenceParameters(sequenceFile=file))
 #output file
-f = open("cider_rnap.dat", "w")
+f = open("cider_ecoli.dat", "w")
 
 #Cider commands to get the parameters of interest
 for obj in list_of_SeqObjs:
@@ -31,7 +31,7 @@ for obj in list_of_SeqObjs:
 f.close()
 
 #For plotting mean net charge vs mean hydropathy
-with open('cider_rnap.dat') as f:
+with open('cider_ecoli.dat') as f:
     lines = f.readlines()
     x = [line.split()[3] for line in lines]
     y = [line.split()[4] for line in lines]
@@ -50,4 +50,4 @@ plt.ylim(0, 0.4)
 fig1=plt.gcf() 
 plt.show()
 plt.draw()
-fig1.savefig('RNAP_table1.png')
+fig1.savefig('ecoli_uversky.png')
